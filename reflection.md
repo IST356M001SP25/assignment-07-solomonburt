@@ -1,7 +1,7 @@
 # Reflection
 
-Student Name:  name
-Sudent Email:  email
+Student Name:  Solomon Burt
+Sudent Email:  sdburt@syr.edu
 
 ## Instructions
 
@@ -23,3 +23,12 @@ Examples:
 
 `--- Reflection Below This Line ---`
 
+This assignment focused on web scraping a restaurant menu from Tully's Good Times website to extract menu items and store them in a CSV file. The process involved using the Playwright library for web automation, CSS selectors for identifying relevant page elements, and custom Python functions to clean and structure the extracted data. The goal was to create a structured dataset containing the category, name, price, and description of each menu item.
+
+The assignment was structured into several key parts. menuitem.py introduced a MenuItem dataclass to represent individual menu items with attributes for category, name, price, and description. It also included methods for converting a MenuItem object to a dictionary and creating a MenuItem object from a dictionary, which provided a structured way to handle the scraped data. menuitemextractor.py contained the core logic for processing the raw text scraped from the website and converting it into MenuItem objects. The key functions implemented were: clean_price(price: str) -> float, responsible for cleaning price strings; clean_scraped_text(scraped_text: str) -> list[str], which processed the raw text of a menu item; and extract_menu_item(title: str, scraped_text: str) -> MenuItem, which orchestrated the extraction process. tully_scraper.py was the main script, responsible for navigating the Tully's Good Times menu webpage using Playwright and CSS selectors, extracting menu item data, and saving it to a CSV file. Finally, the testing phase used test_menuitemextractor.py and test_tully_scraper_output.py to verify the correctness of the code.
+
+A primary challenge was to carefully inspect the HTML structure of the Tully's Good Times menu webpage to identify the correct CSS selectors. This involved using browser developer tools to understand the DOM hierarchy. Implementing the clean_scraped_text function required careful consideration of the different types of text present within each menu item block. The logic to filter out unwanted lines was crucial. The extract_menu_item function needed to handle cases where a menu item did not have a description. Successfully using Playwright to navigate the webpage, locate elements using CSS selectors, and extract their text required understanding the asynchronous nature of web scraping. Converting the list of dictionaries into a Pandas DataFrame provided a convenient way to structure the scraped data.
+
+The MenuItem dataclass provided a clear and concise way to represent the structured menu data. The assignment reinforced the importance of precise CSS selectors. Cleaning and processing scraped text is a vital step in web scraping, and the assignment provided a practical understanding of a typical web scraping workflow. The included tests highlighted the importance of verifying the functionality of the code.
+
+The scraper could be made more robust by adding more comprehensive error handling. CSS selectors and output file paths could be externalized into a configuration file. If the website used more dynamic content loading, different techniques might be necessary. For real-world scraping scenarios, implementing delays and adhering to the website's robots.txt file are crucial. Adding logging statements would provide better visibility into the scraping process.
